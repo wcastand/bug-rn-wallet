@@ -1,5 +1,6 @@
-{
-  "expo": {
+import 'tsx/cjs';
+
+module.exports = {
     "name": "bug-rn-wallet",
     "slug": "bug-rn-wallet",
     "version": "1.0.0",
@@ -9,14 +10,20 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wcastand.bugrnwallet",
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true,
+        "CFBundleLocalizations": ["fr"]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.wcastand.bugrnwallet"
     },
     "web": {
       "bundler": "metro",
@@ -33,10 +40,17 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "merchant",
+          "enableGooglePay": true
+        }
+      ],
+      ["./android.plugin.ts", { "googleTapAndPaySdkPath": "./libs/tapandpay-v18.3.3.zip" }],
     ],
     "experiments": {
       "typedRoutes": true
     }
-  }
 }
